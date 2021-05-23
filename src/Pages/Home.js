@@ -14,30 +14,13 @@ const Home = () => {
   const [recipes, setRecipes] = useState(0);
   const { isOpened, setIsOpened } = useContext(AuthContext);
   const [addedRecipe, setAddedRecipe] = useState([]);
-  const [Image, setImage] = useState(0);
+  const [Image, setImage] = useState([]);
 
   useEffect(() => {
     setTimeout(() => {
       setRecipes(recipeMock);
     }, 1000);
   }, [recipes]);
-
-  const fileSelectorHandler = (event) => {
-    const file = event.target.files[0];
-    setImage(file);
-    var reader = new FileReader();
-    reader.addEventListener(
-      "load",
-      () => {
-        setImage(reader.result);
-      },
-      false
-    );
-
-    reader.readAsDataURL(file);
-  };
-
-  const filePath = `../assets/images/${Image}`;
 
   const formik = useFormik({
     initialValues: {
@@ -54,6 +37,21 @@ const Home = () => {
       resetForm({});
     },
   });
+
+  const fileSelectorHandler = (event) => {
+    const file = event.target.files[0];
+    setImage(file);
+    var reader = new FileReader();
+    reader.addEventListener(
+      "load",
+      () => {
+        setImage(reader.result);
+      },
+      false
+    );
+
+    reader.readAsDataURL(file);
+  };
 
   return (
     <>

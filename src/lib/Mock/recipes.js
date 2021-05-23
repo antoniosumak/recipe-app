@@ -14,7 +14,7 @@ const recipeMock = [
     ingridients: "6 INGRIDIENTS",
     steps: "4 STEPS",
     prepTime: "5MIN",
-    isFavourite: false,
+    isFavourite: true,
     isFeatured: true,
   },
   {

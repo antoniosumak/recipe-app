@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "./RecipeCard.scss";
 import { AiOutlineHeart } from "react-icons/ai";
 
 const RecipeCard = ({ title, image, steps, prepTime, ingridients, alt }) => {
+  const [isFavourite, setIsFavourite] = useState(false);
+  const eventHandle = (event) => {
+    event.preventDefault();
+    setIsFavourite(true);
+  };
   return (
     <div className={"RecipeCard"}>
       <figure className={"RecipeCard-Figure"}>
-        <div className={"HeartCircle"}>
+        <div
+          onClick={eventHandle}
+          className={isFavourite ? "HeartCircle-Favourite" : "HeartCircle"}
+        >
           <div className={"HeartWrapper"}>
             <AiOutlineHeart />
           </div>
