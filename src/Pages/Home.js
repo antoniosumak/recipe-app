@@ -14,7 +14,7 @@ const Home = () => {
   const [recipes, setRecipes] = useState(0);
   const { isOpened, setIsOpened } = useContext(AuthContext);
   const [addedRecipe, setAddedRecipe] = useState([]);
-  const [Image, setImage] = useState("");
+  const [Image, setImage] = useState(0);
 
   useEffect(() => {
     setTimeout(() => {
@@ -23,8 +23,18 @@ const Home = () => {
   }, [recipes]);
 
   const fileSelectorHandler = (event) => {
-    var fileName = event.target.files[0].name;
-    setImage(fileName);
+    const file = event.target.files[0];
+    setImage(file);
+    var reader = new FileReader();
+    reader.addEventListener(
+      "load",
+      () => {
+        setImage(reader.result);
+      },
+      false
+    );
+
+    reader.readAsDataURL(file);
   };
 
   const filePath = `../assets/images/${Image}`;
@@ -36,7 +46,7 @@ const Home = () => {
       numberOfSteps: "",
       time: "",
       numberOfIngridients: "",
-      imgURL: "",
+      images: [],
     },
     onSubmit: (values, { resetForm }) => {
       setAddedRecipe([...addedRecipe, values]);
@@ -118,7 +128,7 @@ const Home = () => {
                 ingridients={`${prop.numberOfIngridients} INGRIDIENTS`}
                 steps={`${prop.numberOfSteps} STEPS`}
                 prepTime={`${prop.time} MIN`}
-                image={filePath}
+                image={Image}
               />
             ))}{" "}
           </Grid>

@@ -2,8 +2,36 @@
   padding: 20px;
 
   &-Figure {
+    position: relative;
     height: 550px;
     width: 100%;
+
+    .HeartCircle {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(51, 49, 50, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      transition: ease-in-out 0.3s;
+
+      &:hover {
+        .HeartWrapper {
+          color: #f2994a;
+          cursor: pointer;
+        }
+      }
+    }
+    .HeartWrapper {
+      padding-top: 6px;
+      font-size: 20px;
+      color: white;
+      transition: ease-in-out 0.3s;
+    }
   }
 
   &-Image {
