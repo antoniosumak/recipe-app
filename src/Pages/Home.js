@@ -1,21 +1,101 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Grid from "../components/Grid/Grid";
 import Section from "../components/Section/Section";
 import recipeMock from "../lib/Mock/recipes";
 import RecipeCard from "../components/RecipeCard/RecipeCard";
+import Loader from "react-loader-spinner";
+import MainHeader from "../components/MainHeader/MainHeader";
+import Modal from "../components/Modal/Modal";
+import { AuthContext } from "../context/AuthContex";
+import { useFormik } from "formik";
+import "../generalStyles.scss";
 
 const Home = () => {
   const [recipes, setRecipes] = useState(0);
+  const { isOpened, setIsOpened } = useContext(AuthContext);
+  const [addedRecipe, setAddedRecipe] = useState([]);
+  const [Image, setImage] = useState("");
 
   useEffect(() => {
-    setRecipes(recipeMock);
-    console.log(recipes);
+    setTimeout(() => {
+      setRecipes(recipeMock);
+    }, 1000);
   }, [recipes]);
+
+  const fileSelectorHandler = (event) => {
+    var fileName = event.target.files[0].name;
+    setImage(fileName);
+  };
+
+  const filePath = `../assets/images/${Image}`;
+
+  const formik = useFormik({
+    initialValues: {
+      id: 1,
+      title: "",
+      numberOfSteps: "",
+      time: "",
+      numberOfIngridients: "",
+      imgURL: "",
+    },
+    onSubmit: (values, { resetForm }) => {
+      setAddedRecipe([...addedRecipe, values]);
+      setIsOpened(false);
+      resetForm({});
+    },
+  });
 
   return (
     <>
       <Section>
-        {!recipes ? null : (
+        {isOpened && (
+          <Modal title="test">
+            <form className={"ModalForm"} onSubmit={formik.handleSubmit}>
+              <div className={"FormRow"}>
+                <label htmlFor="title">Title</label>
+                <input
+                  id="title"
+                  type="text"
+                  {...formik.getFieldProps("title")}
+                />
+              </div>
+              <div className={"FormRow"}>
+                <label htmlFor="title">Number of steps</label>
+                <input
+                  id="numberOfSteps"
+                  type="text"
+                  {...formik.getFieldProps("numberOfSteps")}
+                />
+              </div>
+              <div className={"FormRow"}>
+                <label htmlFor="title">Preparation time</label>
+                <input
+                  id="time"
+                  type="text"
+                  {...formik.getFieldProps("time")}
+                />
+              </div>
+              <div className={"FormRow"}>
+                <label htmlFor="title">Number of ingridients</label>
+                <input
+                  id="numberOfIngridients"
+                  type="text"
+                  {...formik.getFieldProps("numberOfIngridients")}
+                />
+              </div>
+              <div className={"FormRow"}>
+                <label htmlFor="imgURL">Image</label>
+                <input id="imgURL" type="file" onChange={fileSelectorHandler} />
+              </div>
+
+              <button className={"FormButton"}>Add</button>
+            </form>
+          </Modal>
+        )}
+        <MainHeader title={"Your recipes"} />
+        {!recipes ? (
+          <Loader type="TailSpin" color="#f2994a" height={100} width={100} />
+        ) : (
           <Grid>
             {recipes.map(
               (recipe) =>
@@ -31,6 +111,16 @@ const Home = () => {
                   />
                 )
             )}
+            {addedRecipe.map((prop, index) => (
+              <RecipeCard
+                key={index}
+                title={prop.title}
+                ingridients={`${prop.numberOfIngridients} INGRIDIENTS`}
+                steps={`${prop.numberOfSteps} STEPS`}
+                prepTime={`${prop.time} MIN`}
+                image={filePath}
+              />
+            ))}{" "}
           </Grid>
         )}
       </Section>

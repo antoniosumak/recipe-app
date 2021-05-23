@@ -1,9 +1,9 @@
-import PeachSmash from "../../assets/images/Rectangle 87.png";
-import PistacioPesto from "../../assets/images/Rectangle 88.png";
-import SesameCrustedTofu from "../../assets/images/Rectangle 89.png";
-import MexicanCorn from "../../assets/images/Rectangle 90.png";
-import Carbonara from "../../assets/images/Rectangle 91.png";
-import BananaBread from "../../assets/images/Rectangle 92.png";
+import PeachSmash from "../../assets/images/Rectangle87.png";
+import PistacioPesto from "../../assets/images/Rectangle88.png";
+import SesameCrustedTofu from "../../assets/images/Rectangle89.png";
+import MexicanCorn from "../../assets/images/Rectangle90.png";
+import Carbonara from "../../assets/images/Rectangle91.png";
+import BananaBread from "../../assets/images/Rectangle92.png";
 
 const recipeMock = [
   {

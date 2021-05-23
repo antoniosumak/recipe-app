@@ -3,6 +3,10 @@
 .Section {
   padding: 60px 15px;
   font-family: "Montserrat", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
   &-Title {
     text-align: center;

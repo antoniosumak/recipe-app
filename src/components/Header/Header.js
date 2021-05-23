@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import UserImage from "../../assets/images/wlcca339.bmp";
+import { AuthContext } from "../../context/AuthContex";
 import "./Header.scss";
 
 const Header = () => {
-  const [loggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn, setIsLoggedIn, isOpened, setIsOpened } =
+    useContext(AuthContext);
+
   const handleLogin = (e) => {
     e.preventDefault();
     setIsLoggedIn(true);
@@ -27,7 +30,7 @@ const Header = () => {
           <div className={"Header-HamburgerLine"}></div>
         </div>
         <nav className={"Header-Nav"}>
-          {!loggedIn ? (
+          {!isLoggedIn ? (
             <NavLink onClick={handleLogin} className={"Header-NavItem"} to="/">
               Login
             </NavLink>
