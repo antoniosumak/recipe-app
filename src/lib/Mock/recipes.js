@@ -58,7 +58,7 @@ const recipeMock = [
     ingridients: "7 INGRIDIENTS",
     steps: "10 STEPS",
     prepTime: "25MIN",
-    isFavourite: false,
+    isFavourite: true,
     isFeatured: true,
   },
   {
@@ -69,7 +69,7 @@ const recipeMock = [
     ingridients: "8 INGRIDIENTS",
     steps: "7 STEPS",
     prepTime: "52 MIN",
-    isFavourite: false,
+    isFavourite: true,
     isFeatured: true,
   },
 ];

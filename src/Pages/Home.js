@@ -15,6 +15,7 @@ const Home = () => {
   const { isOpened, setIsOpened } = useContext(AuthContext);
   const [addedRecipe, setAddedRecipe] = useState([]);
   const [Image, setImage] = useState([]);
+  const { addedFavourite } = useContext(AuthContext);
 
   useEffect(() => {
     setTimeout(() => {
@@ -106,16 +107,18 @@ const Home = () => {
         ) : (
           <Grid>
             {recipes.map(
-              (recipe) =>
+              (recipe, index) =>
                 recipe.isFeatured && (
                   <RecipeCard
-                    key={recipe.id}
+                    key={index}
                     image={recipe.imageUrl}
                     alt={recipe.imageAlt}
                     title={recipe.title}
                     ingridients={recipe.ingridients}
                     steps={recipe.steps}
                     prepTime={recipe.prepTime}
+                    isFavourite={recipe.isFavourite}
+                    addedFavourite={addedFavourite}
                   />
                 )
             )}
@@ -131,6 +134,7 @@ const Home = () => {
             ))}{" "}
           </Grid>
         )}
+        {console.log(addedFavourite)}
       </Section>
     </>
   );

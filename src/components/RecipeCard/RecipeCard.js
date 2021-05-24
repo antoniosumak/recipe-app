@@ -1,22 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./RecipeCard.scss";
 import { AiOutlineHeart } from "react-icons/ai";
+import { AuthContext } from "../../context/AuthContex";
 
-const RecipeCard = ({ title, image, steps, prepTime, ingridients, alt }) => {
-  const [isFavourite, setIsFavourite] = useState(false);
-  const eventHandle = (event) => {
-    event.preventDefault();
-    setIsFavourite(true);
+const RecipeCard = ({
+  title,
+  image,
+  steps,
+  prepTime,
+  ingridients,
+  alt,
+  isFavourite,
+  key,
+}) => {
+  const [onClickFavourite, setOnClickFavourite] = useState(false);
+  const twoMethodClick = () => {
+    handleEvent();
+    handleAddingFeature();
+  };
+  const handleEvent = () => {
+    setOnClickFavourite(true);
+  };
+
+  const { addedFavourite, setAddedFavourite } = useContext(AuthContext);
+  const handleAddingFeature = () => {
+    setAddedFavourite([
+      ...addedFavourite,
+      {
+        title: title,
+        image: image,
+        steps: steps,
+        prepTime: prepTime,
+        ingridients: ingridients,
+        alt: alt,
+      },
+    ]);
   };
   return (
     <div className={"RecipeCard"}>
       <figure className={"RecipeCard-Figure"}>
         <div
-          onClick={eventHandle}
-          className={isFavourite ? "HeartCircle-Favourite" : "HeartCircle"}
+          className={
+            isFavourite || onClickFavourite
+              ? "HeartCircle-Favourite"
+              : "HeartCircle"
+          }
         >
           <div className={"HeartWrapper"}>
-            <AiOutlineHeart />
+            <AiOutlineHeart onClick={twoMethodClick} />
           </div>
         </div>
         <img className={"RecipeCard-Image"} src={image} alt={alt} />
