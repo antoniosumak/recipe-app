@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Grid from "../components/Grid/Grid";
 import Section from "../components/Section/Section";
-import recipeMock from "../lib/Mock/recipes";
+import { recipeMock } from "../lib/Mock/recipes";
 import RecipeCard from "../components/RecipeCard/RecipeCard";
 import Loader from "react-loader-spinner";
 
@@ -37,6 +37,7 @@ const Home = () => {
                     steps={recipe.steps}
                     isFavourite={recipe.isFavourite}
                     prepTime={recipe.prepTime}
+                    route={`/recipe/${recipe.id}`}
                   />
                 )
             )}
@@ -49,6 +50,7 @@ const Home = () => {
                 ingridients={favourite.ingridients}
                 steps={favourite.steps}
                 prepTime={favourite.prepTime}
+                route={`/recipe/${favourite.id}`}
               />
             ))}
           </Grid>

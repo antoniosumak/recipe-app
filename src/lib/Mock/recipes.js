@@ -74,4 +74,54 @@ const recipeMock = [
   },
 ];
 
-export default recipeMock;
+const ingridientsMock = [
+  {
+    id: 6,
+    imageUrl: BananaBread,
+    imageAlt: "Banana Bread",
+    servings: "6",
+    firstIngridient: "Bananas, divided",
+    firstIngridientQuant: "3",
+    secondIngridient: "Egg",
+    secondIngridientQuant: "1",
+    thirdIngridient: "Butter",
+    thirdIngridientQuant: "3 Tbs",
+    fourthIngridient: "All - Purpose Flour",
+    fourthIngridientQuant: "1 cup",
+    fifthIngridient: "Granulated Sugar",
+    fifthIngridientQuant: "1/4 cup",
+    sixthIngridient: "Salt",
+    sixthIngridientQuant: "1 pinch",
+    seventhIngridient: "Baking Soda",
+    seventhIngridientQuant: "1 Tsp",
+  },
+];
+
+const stepsMock = [
+  {
+    id: 6,
+    stepOne: "Step 1",
+    stepOneDesc:
+      " Peel the Banana (3). Mash 2 1/2 bananas with a fork in a bowl and set the other half aside. ",
+    stepTwo: "Step  2",
+    stepTwoDesc:
+      " Add Butter (40 gram) and Egg (1) to mashed bananas and mix well together. ",
+    stepThree: "Step  3",
+    stepThreeDesc:
+      "In a separate bowl, mix the All-Purpose Flour (140 gram), Granulated Sugar (50 gram), Salt (1 pinch), and Baking Soda (1 teaspoon) together. ",
+    stepFour: "Step  4",
+    stepFourDesc:
+      "Add the dry ingredients to the mashed banana mixture. Using a fork or spatula, mash all ingredients into a wet banana batter. ",
+    stepFive: "Step  5",
+    stepFiveDesc:
+      "Add Butter (10 gram) to the bottom and sides of the Philips baking accessory and then dust it with a bit of flour. Pour the banana bread batter into the baking accessory. Slice the leftover banana in half lengthwise and place both halves on top of the banana bread. ",
+    stepSix: "Step  6",
+    stepSixDesc:
+      "Place the baking accessory in the basket. Put the basket into the Airfryer. Cook at 325 degrees F (160 degrees C) for 40 minutes. ",
+    stepSeven: "Step  7",
+    stepSevenDesc:
+      "In a separate bowl, mix the All-Purpose Flour (140 gram), Granulated Sugar (50 gram), Salt (1 pinch), and Baking Soda (1 teaspoon) together. ",
+  },
+];
+
+export { recipeMock, ingridientsMock, stepsMock };

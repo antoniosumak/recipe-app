@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Grid from "../components/Grid/Grid";
 import Section from "../components/Section/Section";
-import recipeMock from "../lib/Mock/recipes";
+import { recipeMock } from "../lib/Mock/recipes";
 import RecipeCard from "../components/RecipeCard/RecipeCard";
 import Loader from "react-loader-spinner";
 import MainHeader from "../components/MainHeader/MainHeader";
@@ -12,7 +12,8 @@ import "../generalStyles.scss";
 
 const Home = () => {
   const [recipes, setRecipes] = useState(0);
-  const { isOpened, setIsOpened } = useContext(AuthContext);
+  const { isOpened, setIsOpened, isLoggedIn, isFavourite } =
+    useContext(AuthContext);
   const [addedRecipe, setAddedRecipe] = useState([]);
   const { addedFavourite, Image, setImage } = useContext(AuthContext);
 
@@ -100,7 +101,7 @@ const Home = () => {
             </form>
           </Modal>
         )}
-        <MainHeader title={"Your recipes"} />
+        {isLoggedIn && <MainHeader title={"Your recipes"} />}
         {!recipes ? (
           <Loader type="TailSpin" color="#f2994a" height={100} width={100} />
         ) : (
@@ -118,6 +119,7 @@ const Home = () => {
                     prepTime={recipe.prepTime}
                     isFavourite={recipe.isFavourite}
                     addedFavourite={addedFavourite}
+                    route={`/recipe/${recipe.id}`}
                   />
                 )
             )}
@@ -133,7 +135,6 @@ const Home = () => {
             ))}{" "}
           </Grid>
         )}
-        {console.log(addedFavourite)}
       </Section>
     </>
   );

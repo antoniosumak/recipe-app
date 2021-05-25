@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import "./RecipeCard.scss";
 import { AiOutlineHeart } from "react-icons/ai";
 import { AuthContext } from "../../context/AuthContex";
+import { Link } from "react-router-dom";
 
 const RecipeCard = ({
   title,
@@ -11,6 +12,7 @@ const RecipeCard = ({
   alt,
   isFavourite,
   image,
+  route,
 }) => {
   const [onClickFavourite, setOnClickFavourite] = useState(false);
   const twoMethodClick = () => {
@@ -59,6 +61,9 @@ const RecipeCard = ({
           </ul>
         </div>
       </figure>
+      <Link to={route}>
+        <button>Test</button>
+      </Link>
     </div>
   );
 };
