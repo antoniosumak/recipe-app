@@ -51,7 +51,9 @@ const RecipeCard = ({
             <AiOutlineHeart onClick={twoMethodClick} />
           </div>
         </div>
-        <img className={"RecipeCard-Image"} src={image} alt={alt} />
+        <Link to={route}>
+          <img className={"RecipeCard-Image"} src={image} alt={alt} />
+        </Link>
         <div className={"RecipeCard-Description"}>
           <h2 className={"Title"}>{title}</h2>
           <ul className={"InfoWrapper"}>
@@ -61,9 +63,6 @@ const RecipeCard = ({
           </ul>
         </div>
       </figure>
-      <Link to={route}>
-        <button>Test</button>
-      </Link>
     </div>
   );
 };
