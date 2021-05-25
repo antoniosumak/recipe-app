@@ -5,13 +5,12 @@ import { AuthContext } from "../../context/AuthContex";
 
 const RecipeCard = ({
   title,
-  image,
   steps,
   prepTime,
   ingridients,
   alt,
   isFavourite,
-  key,
+  image,
 }) => {
   const [onClickFavourite, setOnClickFavourite] = useState(false);
   const twoMethodClick = () => {

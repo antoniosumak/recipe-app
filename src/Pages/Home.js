@@ -14,8 +14,7 @@ const Home = () => {
   const [recipes, setRecipes] = useState(0);
   const { isOpened, setIsOpened } = useContext(AuthContext);
   const [addedRecipe, setAddedRecipe] = useState([]);
-  const [Image, setImage] = useState([]);
-  const { addedFavourite } = useContext(AuthContext);
+  const { addedFavourite, Image, setImage } = useContext(AuthContext);
 
   useEffect(() => {
     setTimeout(() => {

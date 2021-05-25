@@ -10,7 +10,7 @@ import { AuthContext } from "../context/AuthContex";
 
 const Home = () => {
   const [recipes, setRecipes] = useState(0);
-  const { addedFavourite } = useContext(AuthContext);
+  const { addedFavourite, Image } = useContext(AuthContext);
 
   useEffect(() => {
     setTimeout(() => {
@@ -35,6 +35,7 @@ const Home = () => {
                     title={recipe.title}
                     ingridients={recipe.ingridients}
                     steps={recipe.steps}
+                    isFavourite={recipe.isFavourite}
                     prepTime={recipe.prepTime}
                   />
                 )
@@ -42,7 +43,7 @@ const Home = () => {
             {addedFavourite.map((favourite, index) => (
               <RecipeCard
                 key={index}
-                image={favourite.imageUrl}
+                image={favourite.image}
                 alt={favourite.imageAlt}
                 title={favourite.title}
                 ingridients={favourite.ingridients}

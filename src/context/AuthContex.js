@@ -6,6 +6,7 @@ const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
   const [addedFavourite, setAddedFavourite] = useState([]);
+  const [Image, setImage] = useState([]);
 
   return (
     <AuthContext.Provider
@@ -16,6 +17,8 @@ const AuthProvider = ({ children }) => {
         setIsOpened,
         addedFavourite,
         setAddedFavourite,
+        Image,
+        setImage,
       }}
     >
       {children}
