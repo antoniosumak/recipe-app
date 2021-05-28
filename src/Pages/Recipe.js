@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { ingridientsMock, stepsMock } from "../lib/Mock/recipes";
-import Section from "../components/Section/Section";
-import RecipeIngridients from "../components/RecipeIngridients/RecipeIngridients";
-import RecipeSteps from "../components/RecipeSteps/RecipeSteps";
-import "./Pages.scss";
+import React, { useEffect, useState } from 'react';
+import { ingridientsMock, stepsMock, recipeMock } from '../lib/Mock/recipes';
+import Section from '../components/Section/Section';
+import RecipeIngridients from '../components/RecipeIngridients/RecipeIngridients';
+import RecipeSteps from '../components/RecipeSteps/RecipeSteps';
+import RecipeHeader from '../components/RecipeHeader/RecipeHeader';
+import './Pages.scss';
 
 const Recipe = (props) => {
   const [recipes, setRecipes] = useState(null);
-  const [recipe, setRecipe] = useState("");
+  const [recipe, setRecipe] = useState('');
   const routeRecipeID = parseInt(props.match.params.id);
 
   const [steps, setSteps] = useState(null);
-  const [step, setStep] = useState("");
+  const [step, setStep] = useState('');
   const routeRecipeIDSteps = parseInt(props.match.params.id);
+
+  const [header, setHeader] = useState(null);
+  const [head, setHead] = useState('');
+  const routeRecipeIDHeader = parseInt(props.match.params.id);
 
   useEffect(() => {
     setRecipes(ingridientsMock);
@@ -23,6 +28,10 @@ const Recipe = (props) => {
   }, [step]);
 
   useEffect(() => {
+    setHeader(recipeMock);
+  }, [head]);
+
+  useEffect(() => {
     recipes &&
       setRecipe(...recipes.filter((recipe) => recipe.id === routeRecipeID));
   }, [recipes, routeRecipeID]);
@@ -31,12 +40,22 @@ const Recipe = (props) => {
     steps && setStep(...steps.filter((step) => step.id === routeRecipeIDSteps));
   }, [steps, routeRecipeIDSteps]);
 
+  useEffect(() => {
+    header &&
+      setHead(...header.filter((head) => head.id === routeRecipeIDHeader));
+  }, [header, routeRecipeIDHeader]);
+
   return (
     <>
-      <Section title={recipe.imageAlt}>
-        <figure className={"Recipe-Figure"}>
+      <RecipeHeader
+        steps={head.steps}
+        ingridients={head.ingridients}
+        prepTime={head.prepTime}
+      />
+      <Section title={recipe.imageAlt} isFavourite={head.isFavourite}>
+        <figure className={'Recipe-Figure'}>
           <img
-            className={"Recipe-Image"}
+            className={'Recipe-Image'}
             src={recipe.imageUrl}
             alt={recipe.imageAlt}
           />
