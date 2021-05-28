@@ -1,27 +1,25 @@
-@import url("https://fonts.googleapis.com/css2?family=Parisienne&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
 .Steps {
   width: 100%;
   margin-top: 32px;
 
   .StepRow {
     margin: auto 0px;
-    border-top: 1px dashed black;
-    padding: 48px 0px;
-    &:first-child {
-      border-top: none;
-    }
-    &:last-child {
-      border-bottom: 1px dashed black;
-    }
-
+    margin-bottom: 48px;
     &-Title {
+      padding-top: 48px;
       margin-bottom: 16px;
+      border-top: 1px black dashed;
     }
+  }
+
+  .StepRow-Title:empty {
+    border-top: none;
   }
 
   .FooterDiv {
     width: 100%;
-    font-family: "Parisienne", cursive;
+    font-family: 'Parisienne', cursive;
     font-size: 40px;
     text-align: center;
     color: #f2994a;
